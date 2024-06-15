@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link"
 
 import { siteConfig } from "@/config/site"
@@ -119,6 +120,19 @@ async function tokenMetadata(tokenId = null) {
     fetchTokenMetadata();
   }, []);
 
+  function removeCircularReferences() {
+    const seen = new WeakSet();
+    return function (key, value) {
+      if (typeof value === "object" && value !== null) {
+        if (seen.has(value)) {
+          return;
+        }
+        seen.add(value);
+      }
+      return value;
+    };
+  }
+
   return (
     <section className="container grid items-center gap-6 pb-8 pt-6 md:py-10">
       <div className="flex max-w-[980px] flex-col items-start gap-2">
@@ -151,7 +165,7 @@ async function tokenMetadata(tokenId = null) {
       </div>
       <div>
       <h1>Pay with ArchID</h1>
-      <p>Client: {JSON.stringify(client)}</p>
+      <p>Client: {JSON.stringify(client, removeCircularReferences())}</p>
       <p>Accounts: {JSON.stringify(accounts)}</p>
       <p>Resolved Record: {JSON.stringify(resolvedRecord)}</p>
       <p>Token Metadata: {JSON.stringify(tokenInfo)}</p>
