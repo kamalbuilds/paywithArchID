@@ -23,7 +23,7 @@ export default function LandingPage() {
           <div className="container px-4 md:px-6">
             <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
               <img
-                src="/placeholder.svg"
+                src="/paywitharchid.png"
                 width="550"
                 height="550"
                 alt="Hero"
@@ -84,7 +84,7 @@ export default function LandingPage() {
                 </Link>
               </div>
               <img
-                src="/placeholder.svg"
+                src="/archid.png"
                 width="550"
                 height="310"
                 alt="ArchID Naming Service"
