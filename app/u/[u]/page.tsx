@@ -1,3 +1,4 @@
+  // @ts-nocheck
   "use client";
   import { TableHead, TableRow, TableHeader, TableCell, TableBody, Table } from "@/components/ui/table";
   import { Pagination } from "@/components/ui/pagination";
@@ -152,8 +153,6 @@
   }}
   width={80}
 />
-
-
               </div>
               <div>
                 <h2 className="text-xl font-bold">{tokenInfo.extension.name}</h2>

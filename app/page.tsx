@@ -35,7 +35,7 @@ export default function LandingPage() {
                     Seamless Payments with ArchID
                   </h1>
                   <p className="max-w-[600px] text-gray-500 md:text-xl dark:text-gray-400">
-                    Discover the power of decentralized payments with ArchID, the Archway network's user-friendly
+                    Discover the power of decentralized payments with ArchID, the Archway network&apos;s user-friendly
                     payment solution.
                   </p>
                 </div>
