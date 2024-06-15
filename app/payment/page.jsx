@@ -4,7 +4,8 @@ import { SigningArchwayClient } from "@archwayhq/arch3.js";
 import BigNumber from "bignumber.js";
 import { Button } from "@/components/ui/button";
 
-const REGISTRY_CONTRACT = "archway1275jwjpktae4y4y0cdq274a2m0jnpekhttnfuljm6n59wnpyd62qppqxq0";
+const Mainnet_REGISTRY_CONTRACT = "archway1275jwjpktae4y4y0cdq274a2m0jnpekhttnfuljm6n59wnpyd62qppqxq0";
+const REGISTRY_CONTRACT = "archway1lr8rstt40s697hqpedv2nvt27f4cuccqwvly9gnvuszxmcevrlns60xw4r";
 
 const Blockchain = {
   chainId: "constantine-3",

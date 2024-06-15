@@ -9,6 +9,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { Buffer } from "buffer"
+import { useToast } from "@/components/ui/use-toast"
 
 export default function Component() {
   const [name, setName] = useState("")
@@ -18,8 +19,10 @@ export default function Component() {
   const [message, setMessage] = useState("")
   const [paymentUrl, setPaymentUrl] = useState("")
 
+  const toast = useToast();
+
   const handleSubmit = (e : any) => {
-    e.preventDefault()
+    e.preventDefault();
 
     const paymentData = {
       name,
@@ -34,13 +37,45 @@ export default function Component() {
     const decodedData = JSON.parse(Buffer.from(encodedData, 'base64').toString('utf-8'));
     console.log(decodedData,"decodedData");
     const paymentUrl = `${window.location.origin}/archpay/${encodedData}`
-    setPaymentUrl(paymentUrl)
+    setPaymentUrl(paymentUrl);
 
+    toast.toast({
+        title: "Payment Request Created!",
+        description: "You can now share the payment link with the recipient.",
+    })
+
+  }
+
+  const handleCopy = (paymentUrl: string) => {
+    navigator.clipboard.writeText(paymentUrl);
+    toast.toast({
+      title: "Payment Link Copied!",
+      description: "You can now share the payment link with the recipient.",
+    })
+  }
+
+  const handleShareTwitter = (paymentUrl: string) => {
+    const twitterUrl = `https://twitter.com/intent/tweet?text=Requesting a payment of $${amount}AARCH from ${senderArchId} for ${message}. Sent from ${recipientArchId} &url=${encodeURIComponent(
+        paymentUrl,
+      )}`
+    window.open(twitterUrl, "_blank")
+  }
+  const handleShareGmail = (paymentUrl: string) => {
+    const gmailUrl = `https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&subject=Payment%20Request&body=Requesting a payment of $${amount} AARCH from ${senderArchId} for ${message}. Sent from ${recipientArchId} %0D%0A%0D%0A${encodeURIComponent(
+        paymentUrl,
+      )}`
+    window.open(gmailUrl, "_blank")
+  }
+  const handleShareTelegram = (paymentUrl: string) => {
+    const telegramUrl = `https://telegram.me/share/url?url=${encodeURIComponent(
+        paymentUrl,
+      )}&text=Requesting a payment of $${amount}AARCH from ${senderArchId} for ${message}. Sent from ${recipientArchId}`
+    window.open(telegramUrl, "_blank")
   }
 
   return (
     <div className="flex items-center justify-center min-h-screen">
-      <Card className="w-full max-w-md">
+      <Card className="w-full max-w-lg">
         <form onSubmit={handleSubmit}>
           <CardHeader>
             <CardTitle>Create Payment Request</CardTitle>
@@ -84,12 +119,23 @@ export default function Component() {
             </div>
           </CardContent>
           <CardFooter>
-            <Button type="submit" className="ml-auto">Create Request</Button>
+            <Button type="submit" className="flex justify-center">Create Request</Button>
           </CardFooter>
         </form>
         {paymentUrl && (
           <CardFooter className="mt-4">
-            <p>Share this link: <Link href={paymentUrl} />{paymentUrl}</p>
+            <Button variant="secondary" onClick={()=> handleCopy(paymentUrl)} className="ml-2">
+                Copy the Payment Link
+            </Button>
+            <Button variant="outline" onClick={() => handleShareTwitter(paymentUrl)} className="ml-2">
+            Share on Twitter
+            </Button>
+            <Button variant="outline" onClick={() =>handleShareGmail(paymentUrl)} className="ml-2">
+            Share via Gmail
+            </Button>
+            <Button variant="outline" onClick={() => handleShareTelegram(paymentUrl)} className="ml-2">
+            Share on Telegram
+            </Button>
           </CardFooter>
         )}
       </Card>
