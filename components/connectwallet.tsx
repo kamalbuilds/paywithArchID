@@ -5,7 +5,7 @@ const ConnectWallet = ({ setSigner }) => {
     const [account, setAccount] = useState(null);
 
     const suggestChain = async () => {
-        await window.keplr.experimentalSuggestChain({
+        await window?.keplr.experimentalSuggestChain({
             chainId: "archway-1",
             chainName: "Archway",
             rpc: "https://rpc.mainnet.archway.io",
