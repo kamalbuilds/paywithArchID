@@ -175,7 +175,7 @@ export default function LandingPage() {
                 <div className="inline-block rounded-lg bg-[#6c5ce7] px-3 py-1 text-sm text-gray-50">Pricing</div>
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Affordable Pricing for Everyone</h2>
                 <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                  ArchID offers flexible pricing options to fit your needs, whether you're an individual or a business.
+                  ArchID offers flexible pricing options to fit your needs, whether you&apos;re an individual or a business.
                 </p>
               </div>
             </div>
@@ -236,7 +236,7 @@ export default function LandingPage() {
                 <Input type="email" placeholder="Enter your email" className="max-w-lg flex-1" />
                 <Button type="submit">Contact Us</Button>
               </form>
-              <p className="text-xs text-gray-500 dark:text-gray-400">We'll get back to you as soon as possible.</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400">We&apos;ll get back to you as soon as possible.</p>
             </div>
           </div>
         </section>
