@@ -250,7 +250,7 @@ const TestnetBlockchain = {
               <TableBody>
                 {accounts.map((account, index) => (
                   <TableRow key={index}>
-                    <TableCell>{account.address}</TableCell>
+                    <TableCell>{resolvedRecord.address}</TableCell>
                     <TableCell>{account.algo}</TableCell>
                     <TableCell>{Buffer.from(account.pubkey).toString('hex')}</TableCell>
                   </TableRow>

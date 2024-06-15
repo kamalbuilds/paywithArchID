@@ -35,7 +35,7 @@ export default function LandingPage() {
                     Seamless Payments with ArchID
                   </h1>
                   <p className="max-w-[600px] text-gray-500 md:text-xl dark:text-gray-400">
-                    Discover the power of decentralized payments with ArchID, the Archway network&apos;s user-friendly
+                    Discover the power of decentralized payments on Archway with paywithArchID, the Archway network&apos;s user-friendly
                     payment solution.
                   </p>
                 </div>
@@ -62,7 +62,7 @@ export default function LandingPage() {
                 <div className="inline-block rounded-lg bg-[#6c5ce7] px-3 py-1 text-sm text-gray-50">Key Features</div>
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Revolutionize Your Payments</h2>
                 <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                  ArchID empowers you to send, receive, and manage payments with ease on the Archway network.
+                  paywithArchID empowers you to send, receive, and manage payments with ease on the Archway network.
                 </p>
               </div>
             </div>
@@ -77,10 +77,11 @@ export default function LandingPage() {
                 </div>
                 <Link
                   href="https://archid.app/"
+                  target="_blank"
                   className="inline-flex h-9 items-center justify-center rounded-md bg-[#6c5ce7] px-4 py-2 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-[#5b4ed6] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#6c5ce7] disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-[#6c5ce7] dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
                   prefetch={false}
                 >
-                  Reister an ArchID domain
+                  Register an ArchID domain
                 </Link>
               </div>
               <img
@@ -93,11 +94,11 @@ export default function LandingPage() {
             </div>
             <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-2 lg:gap-12">
               <img
-                src="/twitter.png"
+                src="/paywitharchid.png"
                 width="550"
                 height="310"
                 alt="Direct Payments"
-                className="mx-auto aspect-video overflow-hidden rounded-xl object-cover object-center sm:w-full"
+                className="mx-auto overflow-hidden rounded-xl object-cover object-center sm:w-full"
               />
               <div className="flex flex-col justify-center space-y-4">
                 <div className="space-y-2">
@@ -143,11 +144,11 @@ export default function LandingPage() {
             </div>
             <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-2 lg:gap-12">
               <img
-                src="/placeholder.svg"
+                src="/reccuringpayments.png"
                 width="550"
                 height="310"
                 alt="Recurring Payments"
-                className="mx-auto aspect-video overflow-hidden rounded-xl object-cover object-center sm:w-full"
+                className="mx-auto overflow-hidden rounded-xl object-contain object-center sm:w-full"
               />
               <div className="flex flex-col justify-center space-y-4">
                 <div className="space-y-2">
