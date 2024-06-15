@@ -55,13 +55,13 @@ export default function Component() {
   }
 
   const handleShareTwitter = (paymentUrl: string) => {
-    const twitterUrl = `https://twitter.com/intent/tweet?text=Requesting a payment of $${amount}AARCH from ${senderArchId} for ${message}. Sent from ${recipientArchId} &url=${encodeURIComponent(
+    const twitterUrl = `https://twitter.com/intent/tweet?text=Requesting a payment of ${amount}AARCH from ${senderArchId} for ${message}. Sent from ${recipientArchId} &url=${encodeURIComponent(
         paymentUrl,
       )}`
     window.open(twitterUrl, "_blank")
   }
   const handleShareGmail = (paymentUrl: string) => {
-    const gmailUrl = `https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&subject=Payment%20Request&body=Requesting a payment of $${amount} AARCH from ${senderArchId} for ${message}. Sent from ${recipientArchId} %0D%0A%0D%0A${encodeURIComponent(
+    const gmailUrl = `https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&subject=Payment%20Request&body=Requesting a payment of ${amount} AARCH from ${senderArchId} for ${message}. Sent from ${recipientArchId} %0D%0A%0D%0A${encodeURIComponent(
         paymentUrl,
       )}`
     window.open(gmailUrl, "_blank")
@@ -69,7 +69,7 @@ export default function Component() {
   const handleShareTelegram = (paymentUrl: string) => {
     const telegramUrl = `https://telegram.me/share/url?url=${encodeURIComponent(
         paymentUrl,
-      )}&text=Requesting a payment of $${amount}AARCH from ${senderArchId} for ${message}. Sent from ${recipientArchId}`
+      )}&text=Requesting a payment of ${amount}AARCH from ${senderArchId} for ${message}. Sent from ${recipientArchId}`
     window.open(telegramUrl, "_blank")
   }
 

@@ -76,24 +76,24 @@ export default function LandingPage() {
                   </p>
                 </div>
                 <Link
-                  href="#"
+                  href="https://archid.app/"
                   className="inline-flex h-9 items-center justify-center rounded-md bg-[#6c5ce7] px-4 py-2 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-[#5b4ed6] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#6c5ce7] disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-[#6c5ce7] dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
                   prefetch={false}
                 >
-                  Learn More
+                  Reister an ArchID domain
                 </Link>
               </div>
               <img
                 src="/archid.png"
                 width="550"
-                height="310"
+                height="550"
                 alt="ArchID Naming Service"
-                className="mx-auto aspect-video overflow-hidden rounded-xl object-cover object-center sm:w-full lg:order-last"
+                className="mx-auto aspect-video overflow-hidden rounded-xl object-contain sm:w-full lg:order-last"
               />
             </div>
             <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-2 lg:gap-12">
               <img
-                src="/placeholder.svg"
+                src="/twitter.png"
                 width="550"
                 height="310"
                 alt="Direct Payments"
@@ -108,11 +108,11 @@ export default function LandingPage() {
                   </p>
                 </div>
                 <Link
-                  href="#"
+                  href="/directpayment"
                   className="inline-flex h-9 items-center justify-center rounded-md bg-[#6c5ce7] px-4 py-2 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-[#5b4ed6] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#6c5ce7] disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-[#6c5ce7] dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
                   prefetch={false}
                 >
-                  Learn More
+                  Do a Direct Payment
                 </Link>
               </div>
             </div>
@@ -126,19 +126,19 @@ export default function LandingPage() {
                   </p>
                 </div>
                 <Link
-                  href="#"
+                  href="/requestpayment"
                   className="inline-flex h-9 items-center justify-center rounded-md bg-[#6c5ce7] px-4 py-2 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-[#5b4ed6] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#6c5ce7] disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-[#6c5ce7] dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
                   prefetch={false}
                 >
-                  Learn More
+                  Request a Payment
                 </Link>
               </div>
               <img
-                src="/placeholder.svg"
-                width="550"
-                height="310"
+                src="/twitter.png"
+                width="350"
+                height="350"
                 alt="Payment Requests"
-                className="mx-auto aspect-video overflow-hidden rounded-xl object-cover object-center sm:w-full lg:order-last"
+                className="mx-auto overflow-hidden rounded-xl object-contain sm:w-full lg:order-last"
               />
             </div>
             <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-2 lg:gap-12">
@@ -158,11 +158,11 @@ export default function LandingPage() {
                   </p>
                 </div>
                 <Link
-                  href="#"
+                  href="/"
                   className="inline-flex h-9 items-center justify-center rounded-md bg-[#6c5ce7] px-4 py-2 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-[#5b4ed6] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#6c5ce7] disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-[#6c5ce7] dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
                   prefetch={false}
                 >
-                  Learn More
+                  Set up a recurring payment
                 </Link>
               </div>
             </div>
@@ -175,7 +175,7 @@ export default function LandingPage() {
                 <div className="inline-block rounded-lg bg-[#6c5ce7] px-3 py-1 text-sm text-gray-50">Pricing</div>
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Affordable Pricing for Everyone</h2>
                 <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                  ArchID offers flexible pricing options to fit your needs, whether you&apos;re an individual or a business.
+                  paywithArchID offers flexible pricing options to fit your needs, whether you&apos;re an individual or a business.
                 </p>
               </div>
             </div>
@@ -214,9 +214,28 @@ export default function LandingPage() {
                   <h3 className="text-2xl font-bold">Pro</h3>
                   <p className="text-gray-500 dark:text-gray-400">Ideal for businesses and power users.</p>
                   <div className="flex items-baseline justify-center space-x-2">
-                    <span className="text-4xl font-bold">$9</span>
+                    <span className="text-4xl font-bold">$10</span>
                     <span className="text-gray-500 dark:text-gray-400">/ month</span>
                   </div>
+                  <ul className="mt-6 space-y-2 text-gray-500 dark:text-gray-400">
+                  <li className="flex items-center">
+                    <CheckIcon className="mr-2 h-4 w-4 text-green-500" />
+                    ArchID Naming Service
+                  </li>
+                  <li className="flex items-center">
+                    <CheckIcon className="mr-2 h-4 w-4 text-green-500" />
+                    Direct Payments
+                  </li>
+                  <li className="flex items-center">
+                    <CheckIcon className="mr-2 h-4 w-4 text-green-500" />
+                    Payment Requests
+                  </li>
+                  <li className="flex items-center">
+                    <CheckIcon className="mr-2 h-4 w-4 text-green-500" />
+                    Recurring Payments
+                  </li>
+                </ul>
+                  <Button className="mt-6 w-full">Get Started</Button>
                 </div>
                 <ul className="mt-6 space-y" />
               </div>

@@ -8,8 +8,8 @@
   import { coin as StargateCoin } from "@cosmjs/stargate";
   import { usePathname } from "next/navigation";
 
-  const REGISTRY_CONTRACT = "archway1275jwjpktae4y4y0cdq274a2m0jnpekhttnfuljm6n59wnpyd62qppqxq0";
-  const CW721_CONTRACT = "archway1cf5rq0amcl5m2flqrtl4gw2mdl3zdec9vlp5hfa9hgxlwnmrlazsdycu4l";
+  const REGISTRY_CONTRACT = "archway1lr8rstt40s697hqpedv2nvt27f4cuccqwvly9gnvuszxmcevrlns60xw4r";
+  const CW721_CONTRACT = "archway146htsfvftmq8fl26977w9xgdwmsptr2quuf7yyra4j0gttx32z3secq008";
 
   const Blockchain = {
     chainId: "archway-1",
@@ -36,17 +36,45 @@
     features: ["cosmwasm"],
   };
 
+  
+const TestnetBlockchain = {
+  chainId: "constantine-3",
+  chainName: "Archway Testnet",
+  rpc: "https://rpc.constantine.archway.io",
+  stakeCurrency: { coinDenom: "ARCH", coinMinimalDenom: "aarch", coinDecimals: 6 },
+  bech32Config: {
+    bech32PrefixAccAddr: "archway",
+    bech32PrefixAccPub: "archwaypub",
+    bech32PrefixValAddr: "archwayvaloper",
+    bech32PrefixValPub: "archwayvaloperpub",
+    bech32PrefixConsAddr: "archwayvalcons",
+    bech32PrefixConsPub: "archwayvalconspub",
+  },
+  currencies: [{ coinDenom: "ARCH", coinMinimalDenom: "aarch", coinDecimals: 18 }],
+  feeCurrencies: [
+    {
+      coinDenom: "ARCH",
+      coinMinimalDenom: "aarch",
+      coinDecimals: 18,
+      gasPriceStep: { low: 0, average: 0.1, high: 0.2 },
+    },
+  ],
+  features: ["cosmwasm"],
+  blockExplorer: "https://www.mintscan.io/archway-testnet",
+};
+
+
   async function getClient() {
-    await globalThis.keplr.experimentalSuggestChain(Blockchain);
-    await globalThis.keplr.enable(Blockchain.chainId);
+    await globalThis.keplr.experimentalSuggestChain(TestnetBlockchain);
+    await globalThis.keplr.enable(TestnetBlockchain.chainId);
     globalThis.keplr.defaultOptions = { sign: { preferNoSetFee: true } };
-    const signer = await globalThis.getOfflineSignerAuto(Blockchain.chainId);
-    const client = await SigningArchwayClient.connectWithSigner(Blockchain.rpc, signer);
+    const signer = await globalThis.getOfflineSignerAuto(TestnetBlockchain.chainId);
+    const client = await SigningArchwayClient.connectWithSigner(TestnetBlockchain.rpc, signer);
     return client;
   }
 
   async function getAccounts() {
-    const signer = await globalThis.getOfflineSignerAuto(Blockchain.chainId);
+    const signer = await globalThis.getOfflineSignerAuto(TestnetBlockchain.chainId);
     const accounts = await signer.getAccounts();
     return accounts;
   }
@@ -137,22 +165,22 @@
     console.log(tokenInfo)
 
     return (
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="bg-white dark:bg-gray-950 rounded-lg shadow-lg p-6">
-            <div className="flex items-center space-x-4">
-              <div className="flex-shrink-0">
-              <img
-  alt="User Profile"
-  className="rounded-full"
-  height={80}
-  src={tokenInfo.extension.image ? tokenInfo.extension.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/") : ""}
-  style={{
-    aspectRatio: "80/80",
-    objectFit: "cover",
-  }}
-  width={80}
-/>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-white dark:bg-gray-950 rounded-lg shadow-lg p-6">
+              <div className="flex items-center space-x-4">
+                <div className="flex-shrink-0">
+                  <img
+                  alt="User Profile"
+                  className="rounded-full"
+                  height={80}
+                  src={tokenInfo.extension.image ? tokenInfo.extension.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/") : ""}
+                  style={{
+                    aspectRatio: "80/80",
+                    objectFit: "cover",
+                  }}
+                  width={80}
+                />
               </div>
               <div>
                 <h2 className="text-xl font-bold">{tokenInfo.extension.name}</h2>
