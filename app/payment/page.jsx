@@ -1,6 +1,7 @@
-"use client"
-import React, { useState } from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import { SigningArchwayClient } from "@archwayhq/arch3.js";
+import BigNumber from "bignumber.js";
 
 const REGISTRY_CONTRACT = "archway1275jwjpktae4y4y0cdq274a2m0jnpekhttnfuljm6n59wnpyd62qppqxq0";
 
@@ -30,29 +31,33 @@ const Blockchain = {
 };
 
 async function getClient() {
-  await globalThis.keplr.experimentalSuggestChain(Blockchain);
-  await globalThis.keplr.enable(Blockchain.chainId);
-  globalThis.keplr.defaultOptions = { sign: { preferNoSetFee: true } };
-  const signer = await globalThis.getOfflineSignerAuto(Blockchain.chainId);
-  const client = await SigningArchwayClient.connectWithSigner(Blockchain.rpc, signer);
-  return client;
+  try {
+    await window.keplr.experimentalSuggestChain(Blockchain);
+    await window.keplr.enable(Blockchain.chainId);
+    window.keplr.defaultOptions = { sign: { preferNoSetFee: true } };
+    const signer = await window.getOfflineSignerAuto(Blockchain.chainId);
+    const client = await SigningArchwayClient.connectWithSigner(Blockchain.rpc, signer);
+    return client;
+  } catch (error) {
+    throw new Error("Failed to initialize Keplr or get client: " + error.message);
+  }
 }
 
 async function resolveRecord(name) {
   if (!name) return { error: "Name is required." };
 
   try {
-    let client = await getClient();
-    let entrypoint = {
+    const client = await getClient();
+    const entrypoint = {
       resolve_record: {
         name: name,
       },
     };
-    let query = await client.queryClient.wasm.queryContractSmart(REGISTRY_CONTRACT, entrypoint);
+    const query = await client.queryClient.wasm.queryContractSmart(REGISTRY_CONTRACT, entrypoint);
     return {
       address: query.address,
       resolvedRecord: query,
-      error: null, // Ensure error is null if no error occurred
+      error: null,
     };
   } catch (error) {
     console.error("Error resolving record:", error);
@@ -65,32 +70,52 @@ async function resolveRecord(name) {
 function ProfilePage() {
   const [name, setName] = useState("");
   const [resolvedRecord, setResolvedRecord] = useState(null);
+  const [amount, setAmount] = useState("");
   const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    const initKeplr = async () => {
+      if (!window.getOfflineSignerAuto || !window.keplr) {
+        alert("Please install keplr extension");
+      } else {
+        if (window.keplr.experimentalSuggestChain) {
+          try {
+            await window.keplr.experimentalSuggestChain(Blockchain);
+            window.keplr.defaultOptions = { sign: { preferNoSetFee: true } };
+          } catch {
+            alert("Failed to suggest the chain");
+          }
+        } else {
+          alert("Please use the recent version of keplr extension");
+        }
+      }
+    };
+
+    initKeplr();
+  }, []);
 
   const handleSearch = async () => {
     const result = await resolveRecord(name);
     setResolvedRecord(result);
+    setMessage("");
   };
 
   const handlePayDirectly = async () => {
     if (resolvedRecord && resolvedRecord.address) {
       try {
-        const client = await getClient();   
-        const signer = await globalThis.getOfflineSignerAuto(Blockchain.chainId);
-        const amount = "1000000"; // Example amount (adjust as needed)
-        const denom = "aarch"; // Token denomination (ARCH in this case)
-        const memo = "Payment from React App"; // Memo for the transaction
-        const address1 = "archway168vtarpntv99ca6cf4edaes5wmgw5haymszmmm"
+        const client = await getClient();
+        const signer = await window.getOfflineSignerAuto(Blockchain.chainId);
+        const accounts = await signer.getAccounts();
+        const amountValue = new BigNumber(amount).multipliedBy(new BigNumber('1e18')).toString();
+        const denom = "aarch";
+        const memo = "Payment from React App";
 
-        const result = await client.sendTokens(signer, address1, amount, denom, memo);
+        const result = await client.sendTokens(accounts[0].address, resolvedRecord.address, [{ denom, amount: amountValue }], "auto", memo);
         console.log("Transaction result:", result);
 
-        // Handle success message
         setMessage("Transaction successful!");
       } catch (error) {
         console.error("Error sending tokens:", error);
-
-        // Handle failure message
         setMessage(error.message || "Transaction failed. Please try again.");
       }
     } else {
@@ -122,6 +147,13 @@ function ProfilePage() {
             ) : (
               <>
                 <p className="text-gray-500 dark:text-gray-400">Address: {resolvedRecord.address}</p>
+                <input
+                  type="number"
+                  value={amount}
+                  onChange={(e) => setAmount(e.target.value)}
+                  placeholder="Enter amount"
+                  className="border p-2 rounded w-full mb-4"
+                />
                 <button
                   onClick={handlePayDirectly}
                   className="mt-4 bg-green-500 hover:bg-green-600 font-bold py-2 px-4 rounded transition duration-300"
@@ -133,7 +165,7 @@ function ProfilePage() {
                 )}
               </>
             )}
-          </div>    
+          </div>
         )}
       </div>
     </div>
