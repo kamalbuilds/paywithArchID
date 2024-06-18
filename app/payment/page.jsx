@@ -30,8 +30,7 @@ const Blockchain = {
     {
       coinDenom: "ARCH",
       coinMinimalDenom: "aarch",
-      coinDecimals: 18,
-      gasPriceStep: { low: 0, average: 0.1, high: 0.2 },
+      coinDecimals: 18
     },
   ],
   features: ["cosmwasm"],
@@ -141,12 +140,11 @@ function ProfilePage() {
         const signer = await window.getOfflineSignerAuto(TestnetBlockchain.chainId);
         const accounts = await signer.getAccounts();
         const amountValue = new BigNumber(amount).multipliedBy(new BigNumber('1e18')).toString();
-        const denom = "aarch";
+        const denom = "aconst";
         const memo = "Payment from PaywithArchID";
 
         const result = await client.sendTokens(accounts[0].address, resolvedRecord.address, [{ denom, amount: amountValue }], "auto", memo);
         console.log("Transaction result:", result);
-
         setMessage("Transaction successful!");
       } catch (error) {
         console.error("Error sending tokens:", error);
@@ -206,4 +204,4 @@ function ProfilePage() {
   );
 }
 
-export default ProfilePage;
+export default ProfilePage;
