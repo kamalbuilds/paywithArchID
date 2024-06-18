@@ -1,21 +1,15 @@
-"use client";
+"use client"
 import React, { useState, useEffect } from "react";
 import { SigningArchwayClient } from "@archwayhq/arch3.js";
 import BigNumber from "bignumber.js";
 import { Button } from "@/components/ui/button";
 
-const REGISTRY_CONTRACT = "archway1lr8rstt40s697hqpedv2nvt27f4cuccqwvly9gnvuszxmcevrlns60xw4r";
-
-// Registry: archway1275jwjpktae4y4y0cdq274a2m0jnpekhttnfuljm6n59wnpyd62qppqxq0
-
-// Cw721: archway1cf5rq0amcl5m2flqrtl4gw2mdl3zdec9vlp5hfa9hgxlwnmrlazsdycu4l
-
-// Marketplace archway1qcejwf6rpgn2xgryyce4x536q4lrue7k2rdxzx8h9jazm44gqf9s5vrsva
+const REGISTRY_CONTRACT = "archway1275jwjpktae4y4y0cdq274a2m0jnpekhttnfuljm6n59wnpyd62qppqxq0";
 
 const Blockchain = {
-  chainId: "archway-1",
-  chainName: "Archway",
-  rpc: "https://rpc.mainnet.archway.io",
+  chainId: "constantine-3",
+  chainName: "Constantine",
+  rpc: "https://rpc.constantine.archway.io",
   stakeCurrency: { coinDenom: "ARCH", coinMinimalDenom: "aarch", coinDecimals: 6 },
   bech32Config: {
     bech32PrefixAccAddr: "archway",

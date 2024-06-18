@@ -133,6 +133,7 @@
     if (!resolvedRecord || !tokenInfo || accounts.length === 0) {
       return <div>Loading...</div>;
     }
+    console.log(tokenInfo)
 
     return (
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -140,17 +141,19 @@
           <div className="bg-white dark:bg-gray-950 rounded-lg shadow-lg p-6">
             <div className="flex items-center space-x-4">
               <div className="flex-shrink-0">
-                <img
-                  alt="User Profile"
-                  className="rounded-full"
-                  height={80}
-                  src="/placeholder.svg"
-                  style={{
-                    aspectRatio: "80/80",
-                    objectFit: "cover",
-                  }}
-                  width={80}
-                />
+              <img
+  alt="User Profile"
+  className="rounded-full"
+  height={80}
+  src={tokenInfo.extension.image ? tokenInfo.extension.image.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/") : ""}
+  style={{
+    aspectRatio: "80/80",
+    objectFit: "cover",
+  }}
+  width={80}
+/>
+
+
               </div>
               <div>
                 <h2 className="text-xl font-bold">{tokenInfo.extension.name}</h2>
