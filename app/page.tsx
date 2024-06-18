@@ -48,15 +48,8 @@ export default function LandingPage() {
                       value={archId}
                       onChange={(e) => setArchId(e.target.value)}
                     />
-                    <Button type="submit">Contact Us</Button>
+                    <Button type="submit" className="inline-flex h-10 items-center justify-center rounded-md bg-[#6c5ce7] px-8 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-[#5b4ed6] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#6c5ce7] disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-[#6c5ce7] dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300">Get Started</Button>
                   </form>
-                  <Link
-                    href="#"
-                    className="inline-flex h-10 items-center justify-center rounded-md bg-[#6c5ce7] px-8 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-[#5b4ed6] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#6c5ce7] disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-[#6c5ce7] dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
-                    prefetch={false}
-                  >
-                    Get Started
-                  </Link>
                 </div>
               </div>
             </div>
