@@ -1,21 +1,15 @@
-"use client";
+"use client"
 import React, { useState, useEffect } from "react";
 import { SigningArchwayClient } from "@archwayhq/arch3.js";
 import BigNumber from "bignumber.js";
 import { Button } from "@/components/ui/button";
 
-const REGISTRY_CONTRACT = "archway1lr8rstt40s697hqpedv2nvt27f4cuccqwvly9gnvuszxmcevrlns60xw4r";
-
-// Registry: archway1275jwjpktae4y4y0cdq274a2m0jnpekhttnfuljm6n59wnpyd62qppqxq0
-
-// Cw721: archway1cf5rq0amcl5m2flqrtl4gw2mdl3zdec9vlp5hfa9hgxlwnmrlazsdycu4l
-
-// Marketplace archway1qcejwf6rpgn2xgryyce4x536q4lrue7k2rdxzx8h9jazm44gqf9s5vrsva
+const REGISTRY_CONTRACT = "archway1275jwjpktae4y4y0cdq274a2m0jnpekhttnfuljm6n59wnpyd62qppqxq0";
 
 const Blockchain = {
-  chainId: "archway-1",
-  chainName: "Archway",
-  rpc: "https://rpc.mainnet.archway.io",
+  chainId: "constantine-3",
+  chainName: "Constantine",
+  rpc: "https://rpc.constantine.archway.io",
   stakeCurrency: { coinDenom: "ARCH", coinMinimalDenom: "aarch", coinDecimals: 6 },
   bech32Config: {
     bech32PrefixAccAddr: "archway",
@@ -30,8 +24,7 @@ const Blockchain = {
     {
       coinDenom: "ARCH",
       coinMinimalDenom: "aarch",
-      coinDecimals: 18,
-      gasPriceStep: { low: 0, average: 0.1, high: 0.2 },
+      coinDecimals: 18
     },
   ],
   features: ["cosmwasm"],
@@ -142,11 +135,10 @@ function ProfilePage() {
         const accounts = await signer.getAccounts();
         const amountValue = new BigNumber(amount).multipliedBy(new BigNumber('1e18')).toString();
         const denom = "aarch";
-        const memo = "Payment from PaywithArchID";
+        const memo = "Payment from React App";
 
         const result = await client.sendTokens(accounts[0].address, resolvedRecord.address, [{ denom, amount: amountValue }], "auto", memo);
         console.log("Transaction result:", result);
-
         setMessage("Transaction successful!");
       } catch (error) {
         console.error("Error sending tokens:", error);
